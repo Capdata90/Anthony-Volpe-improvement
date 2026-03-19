@@ -326,9 +326,6 @@ elif visualization_type == "Business Case":
 
         st.caption("Model Note: WAR projection assumes consistent Sprint Speed and Defensive Runs Saved (DRS) baselines.")
 
-# ──────────────────────────────────────────────
-# THESE ALWAYS SHOW - OUTSIDE ALL IF/ELIF BLOCKS
-# ──────────────────────────────────────────────
 
 # Expandable Dataframe
 with st.expander("View Full Data"):
