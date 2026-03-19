@@ -3,6 +3,14 @@
 ##  Executive Summary
 This repository houses a multi-layered analytical project dedicated to optimizing the performance of **Anthony Volpe** (New York Yankees, SS). By leveraging **Statcast (MLBAM)** data and player-tracking insights inspired by my experience with **Hawk-Eye Innovations**, this project aims to identify marginal gains in Volpe's batting profile and defensive range to maximize his WAR (Wins Above Replacement). I beleive that Volpe is great player who can improve a lot if he is healthy and become the NYY SS for long term.
 
+### Key Features
+* **Strike Zone & Spray Analysis:** Granular contact data visualization.
+* **Comparative Metrics:** Exit Velocity (EV) and Launch Angle (LA) breakdowns by pitch type.
+* **Executive Business Case:** Real-time ROI simulation showing how a 2.0° LA increase can project a **$16M+ gain in Asset Value** (based on WAR metrics).
+
+### Tech Stack
+Python, Streamlit, Pandas, Plotly, GitHub.
+
 ---
 
 ##  Sub-Projects & Technical Ecosystem
