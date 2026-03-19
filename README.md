@@ -1,7 +1,7 @@
 # Anthony Volpe: Performance Optimization & Predictive Analytics 
 
 ##  Executive Summary
-This repository houses a multi-layered analytical project dedicated to optimizing the performance of **Anthony Volpe** (New York Yankees, SS). By leveraging **Statcast (MLBAM)** data and player-tracking insights inspired by my experience with **Hawk-Eye Innovations**, this project aims to identify marginal gains in Volpe's batting profile and defensive range to maximize his WAR (Wins Above Replacement).
+This repository houses a multi-layered analytical project dedicated to optimizing the performance of **Anthony Volpe** (New York Yankees, SS). By leveraging **Statcast (MLBAM)** data and player-tracking insights inspired by my experience with **Hawk-Eye Innovations**, this project aims to identify marginal gains in Volpe's batting profile and defensive range to maximize his WAR (Wins Above Replacement). I beleive that Volpe is great player who can improve a lot if he is healthy and become the NYY SS for long term.
 
 ---
 
