@@ -1,11 +1,11 @@
-# Anthony Volpe: Performance Optimization & Predictive Analytics ⚾💻
+# Anthony Volpe: Performance Optimization & Predictive Analytics 
 
-## 📋 Executive Summary
+##  Executive Summary
 This repository houses a multi-layered analytical project dedicated to optimizing the performance of **Anthony Volpe** (New York Yankees, SS). By leveraging **Statcast (MLBAM)** data and player-tracking insights inspired by my experience with **Hawk-Eye Innovations**, this project aims to identify marginal gains in Volpe's batting profile and defensive range to maximize his WAR (Wins Above Replacement).
 
 ---
 
-## 🚀 Sub-Projects & Technical Ecosystem
+##  Sub-Projects & Technical Ecosystem
 
 ### 1. Interactive Batting Performance Dashboard (Streamlit)
 A high-level tool designed for scouts and coaches to visualize Volpe's offensive output in real-time.
@@ -30,7 +30,7 @@ A Machine Learning approach to anticipate the next pitch Volpe will face based o
 
 ---
 
-## 🛠️ Installation & Setup
+##  Installation & Setup
 
 1. **Clone the repository:**
    ```bash
