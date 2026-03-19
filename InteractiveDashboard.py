@@ -36,14 +36,12 @@ st.sidebar.metric("Total Pitches", len(data))
 st.sidebar.metric("Batting Events", len(batting_data))
 
 # Visualization Type Selector
-if viz_type == st.sidebar.selectbox(
-    "Select Visualization Type",
-    ["Strike Zone", "Field Map", "Trends", "Heatmaps", "Comparative Analysis"]
-)
+visualization_type = st.sidebar.selectbox("Select Visualization Type",
+    ["Strike Zone", "Field Map", "Trends", "Heatmaps", "Comparative Analysis", "Business Case"])
 
 # 1. STRIKE ZONE VISUALIZATION
-if viz_type == "Strike Zone":
-    st.header("🎯 Strike Zone Analysis")
+if visualization_type == "Strike Zone":
+    st.header("Strike Zone Analysis")
     st.markdown("This visualization shows pitch locations for batted balls.")
 
     col1, col2 = st.columns(2)
@@ -91,8 +89,8 @@ if viz_type == "Strike Zone":
         plt.close(fig_heat)
 
 # 2. INTERACTIVE FIELD MAP
-elif viz_type == "Field Map":
-    st.header("🏟️ Batting Map")
+elif visualization_type == "Field Map":
+    st.header("Batting Map")
     st.markdown("Visualization of where batted balls land on the field.")
 
     # Color selector
@@ -105,8 +103,8 @@ elif viz_type == "Field Map":
     plt.close(fig2)
 
 # 3. TREND GRAPHS
-elif viz_type == "Trends":
-    st.header("📈 Trends and Statistics")
+elif visualization_type == "Trends":
+    st.header("Trends and Statistics")
     st.markdown("Analysis of trends in hitter performance.")
 
     st.subheader("Exit Velocity Evolution")
@@ -143,8 +141,8 @@ elif viz_type == "Trends":
         st.plotly_chart(fig_scatter, use_container_width=True)
 
 # 4. ADVANCED HEATMAPS
-elif viz_type == "Heatmaps":
-    st.header("🔥 Advanced Heatmaps")
+elif visualization_type == "Heatmaps":
+    st.header("Advanced Heatmaps")
     st.markdown("Density visualization for different metrics.")
 
     metric = st.selectbox("Select metric for heatmap",
@@ -183,8 +181,8 @@ elif viz_type == "Heatmaps":
         plt.close(fig_h2)
 
 # 5. COMPARATIVE ANALYSIS
-elif viz_type: == "Comparative Analysis":
-    st.header("📊 Comparative Analysis")
+elif visualization_type == "Comparative Analysis":
+    st.header("Comparative Analysis")
     st.markdown("Comparison of different metrics and pitch types.")
 
     st.subheader("Performance by Pitch Type")
@@ -231,8 +229,122 @@ if len(batting_data) > 0:
     st.sidebar.metric("Most Common Event",
                       batting_data['events'].mode().iloc[0] if len(batting_data) > 0 else "N/A")
 
-    # Final version with Business Case.
 
+# --- SECTION 6: EXECUTIVE BUSINESS CASE & ROI ---
+st.markdown("---")
+st.header("Strategic Optimization & ROI Simulator")
 
+# Base values for Anthony Volpe
+current_war = 1.6
+current_wrc_plus = 83
+war_market_value = 8.1
 
+with st.container():
+    st.write("""
+    This section translates Statcast performance metrics into organizational value. 
+    By simulating mechanical adjustments, we can project the increase in player valuation (WAR) 
+    and the corresponding financial impact for the ballclub.
+    """)
 
+    # Interactive slider
+    improvement_la = st.slider(
+        "🎯 Simulate Launch Angle Optimization (degrees)",
+        min_value=0,
+        max_value=10,
+        value=0,
+        step=1,
+        help="Move the slider to simulate the effect of increasing Volpe's average launch angle"
+    )
+
+    # Calculations reactive to slider
+    gain_in_war = improvement_la * 0.35
+    financial_gain = gain_in_war * war_market_value
+    projected_war = current_war + gain_in_war
+    projected_wrc = current_wrc_plus + (improvement_la * 4)
+
+    st.markdown("---")
+
+    # Metrics
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            label="🎯 Target wRC+",
+            value=f"{projected_wrc:.0f}",
+            delta=f"+{projected_wrc - current_wrc_plus:.0f} pts"
+        )
+
+    with col2:
+        st.metric(
+            label="📈 Projected Season WAR",
+            value=f"{projected_war:.1f}",
+            delta=f"+{gain_in_war:.2f} Wins"
+        )
+
+    with col3:
+        st.metric(
+            label="💰 Roster Value Increase",
+            value=f"${financial_gain:.1f}M",
+            delta="Estimated ROI",
+            delta_color="normal"
+        )
+
+    st.markdown("---")
+
+    # Interactive chart
+    fig_roi = go.Figure()
+
+    degrees = list(range(0, 11))
+    war_values = [current_war + d * 0.35 for d in degrees]
+    financial_values = [(d * 0.35) * war_market_value for d in degrees]
+
+    fig_roi.add_trace(go.Scatter(
+        x=degrees, y=war_values,
+        mode='lines+markers',
+        name='Projected WAR',
+        line=dict(color='royalblue', width=3),
+        marker=dict(size=8)
+    ))
+
+    fig_roi.add_trace(go.Scatter(
+        x=degrees, y=financial_values,
+        mode='lines+markers',
+        name='Value Added ($M)',
+        line=dict(color='green', width=3, dash='dash'),
+        marker=dict(size=8),
+        yaxis='y2'
+    ))
+
+    # Vertical line at current slider value
+    fig_roi.add_vline(
+        x=improvement_la,
+        line_dash="dot",
+        line_color="red",
+        annotation_text=f"Selected: +{improvement_la}°",
+        annotation_position="top right"
+    )
+
+    fig_roi.update_layout(
+        title='WAR & Financial Value vs. Launch Angle Optimization',
+        xaxis_title='Launch Angle Improvement (degrees)',
+        yaxis=dict(title='Projected WAR', color='royalblue'),
+        yaxis2=dict(title='Value Added ($M)', color='green',
+                    overlaying='y', side='right'),
+        legend=dict(x=0.01, y=0.99),
+        height=400
+    )
+
+    st.plotly_chart(fig_roi, use_container_width=True)
+
+    # Strategic narrative
+    st.markdown("### 📋 Strategic Recommendation")
+    st.info(f"""
+    **Focus:** Transitioning Volpe's high-velocity ground balls into line drives.
+
+    **Analysis:** A **{improvement_la}° optimization** in Average Launch Angle projects a WAR increase 
+    of **+{gain_in_war:.2f}**, bringing his season total to **{projected_war:.1f} WAR**.  
+    At current market rates (~$8.1M/WAR), this adds approximately **${financial_gain:.1f}M** 
+    in asset value to the 26-man roster.
+    """)
+
+    st.caption("Model Note: WAR projection assumes consistent Sprint Speed and Defensive Runs Saved (DRS) baselines.")
