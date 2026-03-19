@@ -22,6 +22,7 @@ st.sidebar.header("Visualization Controls")
 @st.cache_data
 def load_data():
     # Fetching data for Anthony Volpe (ID: 683011)
+    #WE CAN SET ANY DATE
     return pyb.statcast_batter('2025-03-01', '2025-11-01', player_id=683011)
 
 with st.spinner('Loading data...'):
