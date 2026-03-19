@@ -13,7 +13,7 @@ A high-level tool designed for scouts and coaches to visualize Volpe's offensive
 * **Key Feature:** Dynamic filtering by pitch velocity and type to identify "blind spots" in the strike zone.
 * **Tech Stack:** `Python`, `Streamlit`, `Plotly`, `Seaborn`.
 
-### 2. Plate Discipline & Swing Decision Analysis (Jupyter)
+### 2. Plate Discipline & Swing Decision Analysis 
 A deep-dive into Volpe’s decision-making process. This sub-project focuses on **O-Swing%** (swings at pitches outside the zone) vs. **Z-Swing%**.
 * **Goal:** Identifying "Shadow Zone" tendencies to reduce strikeout rates and increase walk frequency.
 * **Methodology:** Quadrant-based whiff analysis using Statcast coordinate data (`plate_x`, `plate_z`).
