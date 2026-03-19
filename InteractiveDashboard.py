@@ -36,7 +36,7 @@ st.sidebar.metric("Total Pitches", len(data))
 st.sidebar.metric("Batting Events", len(batting_data))
 
 # Visualization Type Selector
-viz_type = st.sidebar.selectbox(
+if viz_type == st.sidebar.selectbox(
     "Select Visualization Type",
     ["Strike Zone", "Field Map", "Trends", "Heatmaps", "Comparative Analysis"]
 )
@@ -183,7 +183,7 @@ elif viz_type == "Heatmaps":
         plt.close(fig_h2)
 
 # 5. COMPARATIVE ANALYSIS
-else:
+elif viz_type: == "Comparative Analysis":
     st.header("📊 Comparative Analysis")
     st.markdown("Comparison of different metrics and pitch types.")
 
