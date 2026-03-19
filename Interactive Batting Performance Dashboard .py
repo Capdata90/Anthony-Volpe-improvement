@@ -231,3 +231,8 @@ if len(batting_data) > 0:
     st.sidebar.metric("Most Common Event",
                       batting_data['events'].mode().iloc[0] if len(batting_data) > 0 else "N/A")
 
+    # Final version with Business Case.
+
+
+
+
