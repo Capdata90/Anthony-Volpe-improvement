@@ -12,7 +12,7 @@ from baseball_field_viz import transform_coords, draw_field, spraychart
 st.set_page_config(page_title="Baseball Visualization - Anthony Volpe", layout="wide")
 
 # Main Title
-st.title("Anthony Volpe batting stats")
+st.title("Anthony Volpe 2025 batting stats")
 st.markdown("---")
 
 # Sidebar for controls
