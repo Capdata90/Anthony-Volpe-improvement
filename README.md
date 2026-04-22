@@ -16,6 +16,8 @@ Python, Streamlit, Pandas, Plotly, GitHub.
 ##  Sub-Projects & Technical Ecosystem
 
 ### 1. Interactive Batting Performance Dashboard (Streamlit) 
+# Anthony Volpe Offensive Optimization Dashboard
+[Live App Link](https://anthony-volpe-improvement-project.streamlit.app/)
 A high-level tool designed for scouts and coaches to visualize Volpe's offensive output in real-time.
 * **Core Metrics:** Exit Velocity (EV) trends, Launch Angle (LA) distribution, and Zone-specific contact rates.
 * **Key Feature:** Dynamic filtering by pitch velocity and type to identify "blind spots" in the strike zone.
