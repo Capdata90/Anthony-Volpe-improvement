@@ -32,6 +32,8 @@ A deep-dive into Volpe’s decision-making process. This sub-project focuses on 
 
 
 ### 3. Pitch Sequence Prediction Model (Experimental)
+https://anthony-volpe-matchup.streamlit.app/
+
 A Machine Learning approach to anticipate the next pitch Volpe will face based on count, runners on base, and pitcher tendencies.
 * **Model:** Random Forest / XGBoost Classifier.
 * **Utility:** Providing the hitter with a "scouting report" probability for 2-strike counts.
