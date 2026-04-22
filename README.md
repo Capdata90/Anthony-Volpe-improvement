@@ -25,6 +25,7 @@ A high-level tool designed for scouts and coaches to visualize Volpe's offensive
 
 ### 2. Plate Discipline & Swing Decision Analysis 
 https://capdata90.github.io/Anthony-Volpe-improvement/
+
 A deep-dive into Volpe’s decision-making process. This sub-project focuses on **O-Swing%** (swings at pitches outside the zone) vs. **Z-Swing%**.
 * **Goal:** Identifying "Shadow Zone" tendencies to reduce strikeout rates and increase walk frequency.
 * **Methodology:** Quadrant-based whiff analysis using Statcast coordinate data (`plate_x`, `plate_z`).
