@@ -24,16 +24,14 @@ A high-level tool designed for scouts and coaches to visualize Volpe's offensive
 * **Tech Stack:** `Python`, `Streamlit`, `Plotly`, `Seaborn`.
 
 ### 2. Plate Discipline & Swing Decision Analysis 
+https://capdata90.github.io/Anthony-Volpe-improvement/
+
 A deep-dive into Volpe’s decision-making process. This sub-project focuses on **O-Swing%** (swings at pitches outside the zone) vs. **Z-Swing%**.
 * **Goal:** Identifying "Shadow Zone" tendencies to reduce strikeout rates and increase walk frequency.
 * **Methodology:** Quadrant-based whiff analysis using Statcast coordinate data (`plate_x`, `plate_z`).
 
-### 3. Defensive Efficiency & "First Step" Tracking
-Drawing on my background with **Hawk-Eye**, this analysis examines Volpe's defensive range at Shortstop.
-* **Focus:** Conversion rates on "50/50" balls and positioning efficiency relative to hitter spray charts.
-* **Insight:** Correlation between sprint speed burst and successful putouts on high-leverage plays.
 
-### 4. Pitch Sequence Prediction Model (Experimental)
+### 3. Pitch Sequence Prediction Model (Experimental)
 A Machine Learning approach to anticipate the next pitch Volpe will face based on count, runners on base, and pitcher tendencies.
 * **Model:** Random Forest / XGBoost Classifier.
 * **Utility:** Providing the hitter with a "scouting report" probability for 2-strike counts.
