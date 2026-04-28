@@ -119,7 +119,7 @@ def build_pitcher_name_map(pitcher_ids: list) -> dict:
     Falls back to '#ID' when a pitcher is not found.
     """
     try:
-        register = chadwick_register(save=True)
+        register = chadwick_register(save=False)
         reg = register.dropna(subset=["key_mlbam"]).copy()
         reg["key_mlbam"] = reg["key_mlbam"].astype(int)
         reg["full_name"] = (
@@ -145,24 +145,45 @@ def build_pitcher_name_map(pitcher_ids: list) -> dict:
 # ── DATA LOADING ───────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
 def load_volpe_data():
-    seasons = [
-        ("2023-03-30", "2023-11-05"),
-        ("2024-03-20", "2024-10-31"),
-        ("2025-03-27", "2025-10-15"),
-    ]
-    frames = []
-    for start, end in seasons:
-        try:
-            d = statcast_batter(start, end, player_id=VOLPE_ID)
-            if not d.empty:
-                frames.append(d)
-        except Exception:
-            continue
+    file_path = "volpe_data_2023_2025.csv"
 
-    if not frames:
-        return pd.DataFrame()
+    # PASO A: Intentar leer el archivo local primero (Súper rápido)
+    try:
+        df = pd.read_csv(file_path)
+        df["game_date"] = pd.to_datetime(df["game_date"])
+        # Aseguramos que los tipos de datos sean correctos tras la carga del CSV
+        if "pitcher" in df.columns:
+            df["pitcher"] = pd.to_numeric(df["pitcher"], errors="coerce").fillna(0).astype(int)
+        print("✅ Datos cargados desde el CSV local.")
+        return df
+    except FileNotFoundError:
+        # PASO B: Si el archivo no existe, descargamos de pybaseball (Solo una vez)
+        st.warning("Generando CSV por primera vez... esto tardará un poco.")
+        seasons = [
+            ("2023-03-30", "2023-11-05"),
+            ("2024-03-20", "2024-10-31"),
+            ("2025-03-27", "2025-10-15"),
+        ]
+        frames = []
+        for start, end in seasons:
+            try:
+                d = statcast_batter(start, end, player_id=VOLPE_ID)
+                if not d.empty:
+                    frames.append(d)
+            except Exception as e:
+                print(f"Error descargando temporada: {e}")
+                continue
 
-    df = pd.concat(frames, ignore_index=True)
+        if not frames:
+            return pd.DataFrame()
+
+        df = pd.concat(frames, ignore_index=True)
+
+        # Guardamos para futuras ocasiones
+        df.to_csv(file_path, index=False)
+        print(f"¡Archivo {file_path} generado con éxito!")
+
+        return df
 
     # MLB games only (R=regular, D=ALDS/NLDS, L=LCS, W=WS, F=wildcard)
     if "game_type" in df.columns:
