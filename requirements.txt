@@ -2,10 +2,6 @@
 pandas
 plotly
 pybaseball
-streamlit
-pandas
-plotly
-pybaseball
 scikit-learn
 xgboost
 
